@@ -3,7 +3,26 @@ version: 2.1
 orbs:
   maven: circleci/maven@0.0.12
 
+#workflows:
+#  maven_test:
+#    jobs:
+#      - maven/test # checkout, build, test, and upload test results
+
+jobs:
+  first-mvn-job-to-execute-tests:
+    docker:
+      - image: circleci/openjdk:8u171-jdk
+    steps:
+      - checkout
+      #- run: 'echo Running test'
+      - run:
+         command: |
+            echo technotrainer Running test
+            mvn clean test
+
 workflows:
-  maven_test:
+  # Name the workflow "welcome"
+  first-workflow-maven:
+    # Run the welcome/run job in its own container
     jobs:
-      - maven/test # checkout, build, test, and upload test results
+      - first-mvn-job-to-execute-command
