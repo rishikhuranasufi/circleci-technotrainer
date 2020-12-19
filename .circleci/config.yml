@@ -29,8 +29,6 @@ jobs:
          command: |
             echo technotrainer Running test
             mvn clean package
-        requires:
-           - first-mvn-job-to-execute-tests
 
 workflows:
   # Name the workflow "welcome"
@@ -39,3 +37,5 @@ workflows:
     jobs:
       - first-mvn-job-to-execute-tests
       - first-mvn-job-to-create-package
+          requires:
+            - first-mvn-job-to-execute-tests
