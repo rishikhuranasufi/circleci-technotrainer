@@ -21,6 +21,9 @@ jobs:
             mvn clean test
       - store_test_results:
           path: /home/circleci/project/target/
+      - store_artifacts:
+          path: /home/circleci/project/target/site/jacoco
+          destination: testcaseDetails
 
   first-mvn-job-to-create-package:
     docker:
