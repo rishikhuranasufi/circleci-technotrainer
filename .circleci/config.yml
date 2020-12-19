@@ -36,6 +36,6 @@ workflows:
     # Run the welcome/run job in its own container
     jobs:
       - first-mvn-job-to-execute-tests
-      - first-mvn-job-to-create-package
+      - first-mvn-job-to-create-package:
           requires:
             - first-mvn-job-to-execute-tests
