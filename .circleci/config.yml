@@ -25,4 +25,4 @@ workflows:
   first-workflow-maven:
     # Run the welcome/run job in its own container
     jobs:
-      - first-mvn-job-to-execute-command
+      - first-mvn-job-to-execute-tests
