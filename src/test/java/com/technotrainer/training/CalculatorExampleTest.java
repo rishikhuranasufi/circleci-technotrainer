@@ -7,9 +7,21 @@ import org.junit.Test;
 public class CalculatorExampleTest {
 
     @Test
-    public void testArea() throws Exception{
+    public void testAdditionOfTwoNumber() throws Exception{
         CalculatorExample calculatorExample = new CalculatorExample();
         Assert.assertEquals(198, calculatorExample.additionOfTwoNumber("99", "99"));
+    }
+
+    @Test
+    public void testAdditionOfTwoNegitiveNumbers() throws Exception{
+        CalculatorExample calculatorExample = new CalculatorExample();
+        Assert.assertEquals(-198, calculatorExample.additionOfTwoNumber("-99", "-99"));
+    }
+
+    @Test
+    public void testPrintDetails() throws Exception{
+        CalculatorExample calculatorExample = new CalculatorExample();
+        Assert.assertEquals(true, calculatorExample.printDetails("99", "99", 99, 99));
     }
 
     @Test
