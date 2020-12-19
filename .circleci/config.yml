@@ -19,6 +19,16 @@ jobs:
          command: |
             echo technotrainer Running test
             mvn clean test
+  first-mvn-job-to-create-package:
+    docker:
+      - image: circleci/openjdk:8u171-jdk
+    steps:
+      - checkout
+      #- run: 'echo Running test'
+      - run:
+         command: |
+            echo technotrainer Running test
+            mvn clean package
 
 workflows:
   # Name the workflow "welcome"
@@ -26,3 +36,4 @@ workflows:
     # Run the welcome/run job in its own container
     jobs:
       - first-mvn-job-to-execute-tests
+      - first-mvn-job-to-create-package
