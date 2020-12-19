@@ -29,6 +29,10 @@ jobs:
          command: |
             echo technotrainer Running test
             mvn clean package
+      - store_artifacts:
+          path: /home/circleci/project/target/
+          destination: mvn-artifact
+
 
 workflows:
   # Name the workflow "welcome"
