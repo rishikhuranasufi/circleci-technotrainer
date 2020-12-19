@@ -38,6 +38,17 @@ jobs:
       - store_artifacts:
           path: /home/circleci/project/target/circleci-0.0.1-SNAPSHOT-jar-with-dependencies.jar
           destination: circleci-0.0.1.jar
+  deploy-stage:
+    docker:
+        - image: ubuntu:14.04
+          auth:
+            username: mydockerhub-user
+            password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+      working_directory: /tmp/my-project
+      steps:
+        - run:
+            name: Deploy if tests pass and branch is Staging
+            command: java -jar circleci-0.0.1.jar
 
 
 workflows:
@@ -49,3 +60,6 @@ workflows:
       - first-mvn-job-to-create-package:
           requires:
             - first-mvn-job-to-execute-tests
+      - deploy-stage:
+          requires:
+            - first-mvn-job-to-create-package
