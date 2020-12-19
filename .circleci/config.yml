@@ -21,7 +21,7 @@ jobs:
             mvn clean test
       - store_test_results:
           path: /home/circleci/project/target/site/jacoco
-          
+
   first-mvn-job-to-create-package:
     docker:
       - image: circleci/openjdk:8u171-jdk
@@ -33,7 +33,7 @@ jobs:
             echo technotrainer Running test
             mvn clean package
       - store_artifacts:
-          path: /home/circleci/project/target/
+          path: /home/circleci/project/target/circleci-0.0.1-SNAPSHOT-jar-with-dependencies.jar
           destination: mvn-artifact
 
 
