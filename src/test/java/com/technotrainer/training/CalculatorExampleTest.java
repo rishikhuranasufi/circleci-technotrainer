@@ -30,4 +30,10 @@ public class CalculatorExampleTest {
         Assert.assertEquals(9801, calculatorExample.multiplicationOfTwoNumber("99", "99"));
     }
 
+    @Test
+    public void testMultiplicationWithZero() throws Exception{
+        CalculatorExample calculatorExample = new CalculatorExample();
+        Assert.assertEquals(0, calculatorExample.multiplicationOfTwoNumber("0", "99"));
+    }
+
 }
