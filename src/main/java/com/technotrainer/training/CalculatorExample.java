@@ -1,4 +1,4 @@
-package com.technotrainer.training.tdd.service;
+package com.technotrainer.training;
 
 public class CalculatorExample {
 	
