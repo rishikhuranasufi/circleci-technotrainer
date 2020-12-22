@@ -24,6 +24,18 @@ jobs:
       - store_artifacts:
           path: /home/circleci/project/target/site/jacoco
           destination: testcaseDetails
+          
+  first-mvn-job-in-parallel-ex-quality-scan:
+    docker:
+      - image: circleci/openjdk:8u171-jdk
+    steps:
+      - checkout
+      #- run: 'echo Running test'
+      - run:
+         command: |
+            echo Sample Job to be executed in parallel.
+            echo This job is just to demonstrate how parllel execution of job can be achived.
+            sleep 10
 
   first-mvn-job-to-create-package:
     docker:
@@ -58,6 +70,7 @@ workflows:
     # Run the welcome/run job in its own container
     jobs:
       - first-mvn-job-to-execute-tests
+      - first-mvn-job-in-parallel-ex-quality-scan
       - first-mvn-job-to-create-package:
           requires:
             - first-mvn-job-to-execute-tests
