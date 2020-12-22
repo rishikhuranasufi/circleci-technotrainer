@@ -78,5 +78,7 @@ workflows:
           type: approval 
           requires:
            - first-mvn-job-to-create-package
-      - deploy-stage
+      - deploy-stage:
+          requires:
+           - hold
           
