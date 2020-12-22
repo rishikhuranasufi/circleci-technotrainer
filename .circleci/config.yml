@@ -75,9 +75,10 @@ workflows:
           requires:
             - first-mvn-job-to-execute-tests
       - hold:
-          type: approval # requires that an in-app button be clicked by an appropriate member of the project to continue.
+          type: approval 
+          # requires that an in-app button be clicked by an appropriate member of the project to continue.
           requires:
            - first-mvn-job-to-create-package
       - deploy-stage:
-          requires:
-            - first-mvn-job-to-create-package
+          #requires:
+          #  - first-mvn-job-to-create-package
