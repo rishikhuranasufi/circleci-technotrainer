@@ -19,6 +19,7 @@ public class CalculatorExample {
 					"Please make sure to execute program using command java -jar circleci-0.0.1-SNAPSHOT-jar-with-dependencies.jar 2 2 \n" +
 					"Still getting error/ Exception, please reach out to instructor.");
 			ex.printStackTrace();
+			System.exit(1);
 		}
 	}
 
