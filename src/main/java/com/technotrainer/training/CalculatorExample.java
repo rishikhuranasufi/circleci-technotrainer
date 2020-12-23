@@ -5,15 +5,21 @@ public class CalculatorExample {
 	public static void main (String arg[]){
 		
 		CalculatorExample calculatorExample = new CalculatorExample();
-		String fisrtNo = "99";
-		String secondNumber = "99";
-		
-		int sumOutputIs = calculatorExample.additionOfTwoNumber(fisrtNo, secondNumber);
-		
-		int mulOutputIs = calculatorExample.multiplicationOfTwoNumber(fisrtNo, secondNumber);
+		try {
+			String fisrtNo = arg[0];
+			String secondNumber = arg[1];
 
-        calculatorExample.printDetails(fisrtNo, secondNumber, sumOutputIs, mulOutputIs);
+			int sumOutputIs = calculatorExample.additionOfTwoNumber(fisrtNo, secondNumber);
 
+			int mulOutputIs = calculatorExample.multiplicationOfTwoNumber(fisrtNo, secondNumber);
+
+			calculatorExample.printDetails(fisrtNo, secondNumber, sumOutputIs, mulOutputIs);
+		}catch (Exception ex){
+			System.out.println("Issue while executing sample code \n " +
+					"Please make sure to execute program using command java -jar circleci-0.0.1-SNAPSHOT-jar-with-dependencies.jar 2 2 \n" +
+					"Still getting error/ Exception, please reach out to instructor.");
+			ex.printStackTrace();
+		}
 	}
 
     public boolean printDetails(String fisrtNo, String secondNumber, int sumOutputIs, int mulOutputIs) {
