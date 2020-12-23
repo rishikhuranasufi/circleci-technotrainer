@@ -58,9 +58,9 @@ jobs:
       - run:
           name: Deploy if tests pass and branch is Staging
           command: |
-            curl -H "Circle-Token: b9d4971043a1d39269ab0b6f09758abb2244c4f4" https://circleci.com/api/v1.1/project/github/rishikhuranasufi/circleci-technotrainer/latest/artifacts \
+            curl -H "Circle-Token: $CIRCLE_CI_TOKEN" https://circleci.com/api/v1.1/project/github/rishikhuranasufi/circleci-technotrainer/latest/artifacts \
                | grep -o 'https://[^"]*' \
-               | wget --verbose --header "Circle-Token: b9d4971043a1d39269ab0b6f09758abb2244c4f4" --input-file -
+               | wget --verbose --header "Circle-Token: $CIRCLE_CI_TOKEN" --input-file -
             java -jar circleci-0.0.1.jar
 
 
