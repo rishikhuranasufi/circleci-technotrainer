@@ -61,7 +61,7 @@ jobs:
             curl -H "Circle-Token: $CIRCLE_CI_TOKEN" https://circleci.com/api/v1.1/project/github/rishikhuranasufi/circleci-technotrainer/latest/artifacts \
                | grep -o 'https://[^"]*' \
                | wget --verbose --header "Circle-Token: $CIRCLE_CI_TOKEN" --input-file -
-            java -jar circleci-0.0.1.jar
+            java -jar circleci-0.0.1.jar 10 10
 
 
 workflows:
