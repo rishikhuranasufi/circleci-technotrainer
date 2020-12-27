@@ -60,7 +60,7 @@ jobs:
             echo technotrainer Running test
             mvn clean package
             # 5th Type of ENV : Environment variable from Context             
-            echo "Value for Test Key :: "$testKey
+            echo "Value from Context env for Test Key is :: "$testKey
             # 6th Type of ENV : Environment variable from Project Env settings    
             echo "value from Projects Env for ENV CIRCLE_CI_TOKEN is :: "$CIRCLE_CI_TOKEN
       - store_artifacts:
