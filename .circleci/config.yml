@@ -21,8 +21,9 @@ jobs:
             mvn clean test
             # 1 & 4 Env Variable -- SHell Variable and Pre build variables
             echo "CIRCLE_BRANCH NAME IS :: $CIRCLE_BRANCH"
-            echo "export BRANCH_NAME=$CIRCLE_BRANCH"
-            echo "BRANCH_NAME VARIABLE IS :: $BRANCH_NAME"
+            echo "export BRANCH_NAME=$CIRCLE_BRANCH" >> $BASH_ENV
+            echo "BASH_ENV VARIABLE IS :: $BASH_ENV"
+            echo "BASH_ENV VARIABLE IS ::" $BASH_ENV
 
       - store_test_results:
           path: /home/circleci/project/target/
