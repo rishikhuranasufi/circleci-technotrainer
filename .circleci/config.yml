@@ -80,5 +80,5 @@ workflows:
            - first-mvn-job-to-create-package
       - deploy-stage:
           requires:
-           - hold
+           - on-hold
           
