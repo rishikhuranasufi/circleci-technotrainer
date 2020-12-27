@@ -15,10 +15,10 @@ public class CalculatorExample {
 
 			calculatorExample.printDetails(fisrtNo, secondNumber, sumOutputIs, mulOutputIs);
 		}catch (Exception ex){
-			System.out.println("Issue while executing sample code \n " +
-					"Please make sure to execute program using command java -jar circleci-0.0.1-SNAPSHOT-jar-with-dependencies.jar 2 2 \n" +
-					"Still getting error/ Exception, please reach out to instructor.");
+			System.out.println("Did you include two values ? \n " +
+					"Example java command -jar circleci-0.0.1-SNAPSHOT-jar-with-dependencies.jar 2 2 \n");
 			ex.printStackTrace();
+			//Added this below line to exit with code other zero and fail the job.
 			System.exit(1);
 		}
 	}
