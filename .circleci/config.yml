@@ -23,8 +23,10 @@ jobs:
             echo "CIRCLE_BRANCH NAME IS :: $CIRCLE_BRANCH"
             echo 'export PATH=/path/to/foo/bin:$PATH' >> $BASH_ENV
             source $BASH_ENV
-            echo $BASH_ENV
-            echo "BASH_ENV VARIABLE IS ::" $BASH_ENV
+            # 2 Type of ENV : Environment variable for a single command shell 
+            echo "ENV INSIDE STEP and valie is "$ENV_INSIDE_STEP            
+         environment:
+           ENV_INSIDE_STEP: env inside step value
 
       - store_test_results:
           path: /home/circleci/project/target/
