@@ -61,6 +61,8 @@ jobs:
             mvn clean package
             # 5th Type of ENV : Environment variable from Context             
             echo "Value for Test Key :: "$testKey
+            # 6th Type of ENV : Environment variable from Project Env settings    
+            echo "value from Projects Env for ENV CIRCLE_CI_TOKEN is :: "$CIRCLE_CI_TOKEN
       - store_artifacts:
           path: /home/circleci/project/target/circleci-0.0.1-SNAPSHOT-jar-with-dependencies.jar
           destination: circleci-0.0.1.jar
