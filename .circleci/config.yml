@@ -24,15 +24,18 @@ jobs:
             echo 'export PATH=/path/to/foo/bin:$PATH' >> $BASH_ENV
             source $BASH_ENV
             # 2 Type of ENV : Environment variable for a single command shell 
-            echo "ENV INSIDE STEP and valie is "$ENV_INSIDE_STEP            
+            echo "ENV INSIDE STEP and value is :: "$ENV_INSIDE_STEP   
+            # 3 Type of ENV : Environment variable for whole JOB 
+            echo "ENV INSIDE STEP via ENV JOB and value is :: "$ENV_INSIDE_JOB  
          environment:
            ENV_INSIDE_STEP: env inside step value
-
       - store_test_results:
           path: /home/circleci/project/target/
       - store_artifacts:
           path: /home/circleci/project/target/site/jacoco
           destination: testcaseDetails
+    environment:
+       ENV_INSIDE_JOB: env inside JOB value
           
   first-mvn-job-in-parallel-ex-quality-scan:
     docker:
