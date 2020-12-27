@@ -22,7 +22,8 @@ jobs:
             # 1 & 4 Env Variable -- SHell Variable and Pre build variables
             echo "CIRCLE_BRANCH NAME IS :: $CIRCLE_BRANCH"
             echo 'export PATH=/path/to/foo/bin:$PATH' >> $BASH_ENV
-            source $BASH_ENV           
+            source $BASH_ENV
+            echo $BASH_ENV
             echo "BASH_ENV VARIABLE IS ::" $BASH_ENV
 
       - store_test_results:
