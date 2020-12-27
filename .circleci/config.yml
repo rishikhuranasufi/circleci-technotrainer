@@ -20,8 +20,8 @@ jobs:
             echo technotrainer Running test
             mvn clean test
             # 1 & 4 Env Variable -- SHell Variable and Pre build variables
-            echo "export GIT_SHA1=$CIRCLE_SHA1" >> $BASH_ENV
-            echo "GIT COmmit Id is $BASH_ENV"
+            echo "export BRANCH_NAME=$CIRCLE_BRANCH" >> $BASH_ENV
+            echo "BRANCH NAME IS :: $BASH_ENV"
 
       - store_test_results:
           path: /home/circleci/project/target/
