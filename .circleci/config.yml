@@ -104,7 +104,7 @@ workflows:
       - deploy-stage:
           requires:
            - waiting-for-approval
-  first-maven-test-using-orbs:
+  maven-test-using-orbs:
     jobs:
       - maven/test # checkout, build, test, and upload test results
   workflow-to-demonstrate-environment:    
