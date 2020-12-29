@@ -1,0 +1,106 @@
+version: 2.1
+
+orbs:
+  maven: circleci/maven@0.0.12
+
+#workflows:
+#  maven_test:
+#    jobs:
+#      - maven/test # checkout, build, test, and upload test results
+
+jobs:
+  first-mvn-job-to-execute-tests:
+    docker:
+      - image: circleci/openjdk:8u171-jdk
+    steps:
+      - checkout
+      #- run: 'echo Running test'
+      - run:
+         command: |
+            echo technotrainer Running test
+            mvn clean test
+            # 1 & 4 Env Variable -- SHell Variable and Pre build variables
+            echo "CIRCLE_BRANCH NAME IS :: $CIRCLE_BRANCH"
+            echo 'export PATH=/path/to/foo/bin:$PATH' >> $BASH_ENV
+            source $BASH_ENV
+            # 2 Type of ENV : Environment variable for a single command shell 
+            echo "ENV INSIDE STEP and value is :: "$ENV_INSIDE_STEP   
+            # 3 Type of ENV : Environment variable for whole JOB 
+            echo "ENV INSIDE STEP via ENV JOB and value is :: "$ENV_INSIDE_JOB  
+         environment:
+           ENV_INSIDE_STEP: env inside step value
+      - store_test_results:
+          path: /home/circleci/project/target/
+      - store_artifacts:
+          path: /home/circleci/project/target/site/jacoco
+          destination: testcaseDetails
+    environment:
+       ENV_INSIDE_JOB: env inside JOB value
+          
+  first-mvn-job-in-parallel-ex-quality-scan:
+    docker:
+      - image: circleci/openjdk:8u171-jdk
+    steps:
+      - checkout
+      #- run: 'echo Running test'
+      - run:
+         command: |
+            echo Sample Job to be executed in parallel.
+            echo This job is just to demonstrate how parllel execution of job can be achived.
+            sleep 10
+
+  first-mvn-job-to-create-package:
+    docker:
+      - image: circleci/openjdk:8u171-jdk
+    steps:
+      - checkout
+      #- run: 'echo Running test'
+      - run:
+         command: |
+            echo technotrainer Running test
+            mvn clean package
+            # 5th Type of ENV : Environment variable from Context             
+            echo "Value from Context env for Test Key is :: "$testKey
+            # 6th Type of ENV : Environment variable from Project Env settings    
+            echo "value from Projects Env for ENV CIRCLE_CI_TOKEN is :: "$CIRCLE_CI_TOKEN
+      - store_artifacts:
+          path: /home/circleci/project/target/circleci-0.0.1-SNAPSHOT-jar-with-dependencies.jar
+          destination: circleci-0.0.1.jar
+  deploy-stage:
+    docker:
+      - image: circleci/openjdk:8u171-jdk
+    working_directory: /tmp/my-project
+    steps:
+      - run:
+          name: Deploy if tests pass and branch is Staging
+          command: |
+            curl -H "Circle-Token: $CIRCLE_CI_TOKEN" https://circleci.com/api/v1.1/project/github/rishikhuranasufi/circleci-technotrainer/latest/artifacts \
+               | grep -o 'https://[^"]*' \
+               | wget --verbose --header "Circle-Token: $CIRCLE_CI_TOKEN" --input-file -
+            java -jar circleci-0.0.1.jar 11 11
+
+
+workflows:
+  # Name the workflow "welcome"
+  first-workflow-maven:
+    # Run the welcome/run job in its own container
+    jobs:
+      - first-mvn-job-to-execute-tests
+      - first-mvn-job-in-parallel-ex-quality-scan
+      - first-mvn-job-to-create-package:
+          requires:
+            - first-mvn-job-to-execute-tests
+          context:
+            - circle-ci-context
+            - another-context
+      - on-hold:
+          type: approval 
+          requires:
+           - first-mvn-job-to-create-package
+      - deploy-stage:
+          requires:
+           - on-hold
+  first-maven-test-using-orbs:
+    jobs:
+      - maven/test # checkout, build, test, and upload test results
+          
