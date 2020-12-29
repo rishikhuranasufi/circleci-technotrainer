@@ -93,13 +93,13 @@ workflows:
           context:
             - circle-ci-context
             - another-context
-      - on-hold:
+      - waiting-for-approval:
           type: approval 
           requires:
            - first-mvn-job-to-create-package
       - deploy-stage:
           requires:
-           - on-hold
+           - waiting-for-approval
   first-maven-test-using-orbs:
     jobs:
       - maven/test # checkout, build, test, and upload test results
