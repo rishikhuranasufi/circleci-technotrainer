@@ -25,7 +25,11 @@ jobs:
             # 2 Type of ENV : Environment variable for a single command shell 
             echo "ENV INSIDE STEP and value is :: "$ENV_INSIDE_STEP   
             # 3 Type of ENV : Environment variable for whole JOB 
-            echo "ENV INSIDE STEP via ENV JOB and value is :: "$ENV_INSIDE_JOB  
+            echo "ENV INSIDE STEP via ENV JOB and value is :: "$ENV_INSIDE_JOB
+            # 5th Type of ENV : Environment variable from Context             
+            echo "Value from Context env for Test Key is :: "$testKey
+            # 6th Type of ENV : Environment variable from Project Env settings    
+            echo "value from Projects Env for ENV CIRCLE_CI_TOKEN is :: "$CIRCLE_CI_TOKEN
          environment:
            ENV_INSIDE_STEP: env inside step value
   
